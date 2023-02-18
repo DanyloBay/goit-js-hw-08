@@ -16,10 +16,15 @@ refs.formEl.addEventListener(
   }, 500)
 );
 
-refs.formEl.addEventListener('submit', event => {
-  event.preventDefault();
-  refs.formEl.reset();
-  localStorage.removeItem(LOCALSTORAGE_KEY);
+refs.formEl.addEventListener('submit', e => {
+  e.preventDefault();
+  if (refs.emailEl.value !== '' && refs.nameEl.value !== '') {
+    console.log({ email: refs.emailEl.value, name: refs.nameEl.value });
+    refs.formEl.reset();
+    localStorage.removeItem(LOCALSTORAGE_KEY);
+  } else {
+    alert('Please all fields must be filled');
+  }
 });
 
 const load = key => {
